@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAMES</title>
+    <style>
+        h1{
+            color: white;
+            text-shadow: 5px 2px 3px crimson;
+        }
+        body {
+            margin-top: 0;
+            margin-left: 35%;
+        }
+        .main {
+            text-align: center;
+            background-image: url("heart.jpg");
+            width: 400px;
+            height: 400px;
+        }
+
+        label {
+            color: white;
+            font-size: 20px;
+            text-shadow: 5px 2px 3px crimson;
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1><b>FLAMES</b></h1>
+        <label><b>Enter 1st name:</b></label>
+        <input type="text" name="" id="first" placeholder="Enter 1st name" required><br><br>
+        <label for=""><b>Enter 2nd name:</b></label>
+        <input type="text" name="" id="second" placeholder="Enter 2nd name" required><br><br>
+        <label>Count:</label>
+        <p id="count"></p>
+        <label>Relationship:</label>
+        <p id="result"></p>
+        <br>
+        <input type="button" onclick="myclick()" value="Submit">
+    </div>
+    <script type="text/javascript">
+        var count;
+        let p = 0;
+        var flames;
+
+        function myclick() {
+            var s1 = document.getElementById("first").value;
+            var s2 = document.getElementById("second").value;
+            count = s1.length + s2.length;
+            for (var i = 0; i < s1.length; i++) {
+                for (var j = 0; j < s2.length; j++) {
+                    if (s1[i] == s2[j]) {
+                        count = count - 2;
+                        break;
+                    }
+                }
+            }
+            document.getElementById("count").innerHTML = count;
+            var i = 0, j = 0;
+            flames = "flames";
+            for (i = 0; i < count * 2; i++) {
+                for (j = 0; j < flames.length; j++) {
+                    p++;
+                    if (p == count) {
+                        flames = flames.substring(j + 1, flames.length) + flames.substring(0, j);
+                        p = 0;
+                        break;
+                    }
+
+                }
+                if (flames.length == 1) {
+                    break;
+                }
+            }
+            if (flames[0] == 'f') {
+                flames = "Friends";
+            } else if (flames[0] == 'l') {
+                flames = "Lovers";
+            } else if (flames[0] == 'a') {
+                flames = "Affection";
+            } else if (flames[0] == 'm') {
+                flames = "Marriage";
+            } else if (flames[0] == 'e') {
+                flames = "Enemies";
+            } else if (flames[0] == 's') {
+                flames = "Sisters";
+            } else {
+                flames = "";
+            }
+            document.getElementById("result").innerHTML = flames;
+        }
+    </script>
+</body>
+
+</html>
